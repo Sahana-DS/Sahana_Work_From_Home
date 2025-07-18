@@ -9,7 +9,7 @@ services:
     depends_on:
       - backend
     environment:
-      - BACKEND_URL=http://backend:3212
+      - BACKEND_URL=http://backend:3000
 
   hr_page:
     build:
@@ -19,13 +19,13 @@ services:
     depends_on:
       - backend
     environment:
-      - BACKEND_URL=http://backend:3212
+      - BACKEND_URL=http://backend:3000
 
   backend:
     build:
       context: ./Backend
     ports:
-      - "3212:3212"
+      - "3000:3000"
     depends_on:
       - db
     environment:
