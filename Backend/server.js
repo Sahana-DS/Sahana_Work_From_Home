@@ -16,8 +16,7 @@ const pool = new Pool({
 });
 
 // Middleware
-app.use(cors({
-  origin: [
+    const allowedOrigins = [
     process.env.FRONTEND_URL,
     "http://184.72.81.87:3001",
     "http://184.72.81.87:5500",
@@ -30,6 +29,16 @@ app.use(cors({
     "http://184.72.81.87:6813",
     "http://184.72.81.87:6814"
   ],
+  app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like curl or Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.error('Blocked by CORS:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
