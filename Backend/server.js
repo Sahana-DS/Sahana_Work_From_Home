@@ -18,16 +18,16 @@ const pool = new Pool({
 // Middleware
     const allowedOrigins = [
     process.env.FRONTEND_URL,
-    "http://184.72.81.87:3001",
-    "http://184.72.81.87:5500",
-    "http://184.72.81.87:5500",
-    "http://184.72.81.87:5501",
-    "http://184.72.81.87:5503", // Added to allow requests from this origin
-    "http://184.72.81.87:5503", // Added to allow requests from this origin
-    "http://184.72.81.87:8081",
-    "http://184.72.81.87:8089",
-    "http://184.72.81.87:6813",
-    "http://184.72.81.87:6814"
+    "http://54.204.255.242:3001",
+    "http://54.204.255.242:5500",
+    "http://54.204.255.242:5500",
+    "http://54.204.255.242:5501",
+    "http://54.204.255.242:5503", // Added to allow requests from this origin
+    "http://54.204.255.242:5503", // Added to allow requests from this origin
+    "http://54.204.255.242:8081",
+    "http://54.204.255.242:8089",
+    "http://54.204.255.242:6813",
+    "http://54.204.255.242:6814"
   ],
   app.use(cors({
   origin: function (origin, callback) {
@@ -213,5 +213,5 @@ app.get('/hr', (req, res) => {
 
 // Start server
 app.listen(port, () => {
-  console.log(`Server running on http://184.72.81.87:${port}`);
+  console.log(`Server running on http://54.204.255.242:${port}`);
 });
