@@ -16,22 +16,20 @@ const pool = new Pool({
 });
 
 // Middleware
-    const allowedOrigins = [
-    process.env.FRONTEND_URL,
-    "http://54.204.255.242:3001",
-    "http://54.204.255.242:5500",
-    "http://54.204.255.242:5500",
-    "http://54.204.255.242:5501",
-    "http://54.204.255.242:5503", // Added to allow requests from this origin
-    "http://54.204.255.242:5503", // Added to allow requests from this origin
-    "http://54.204.255.242:8081",
-    "http://54.204.255.242:8089",
-    "http://54.204.255.242:6813",
-    "http://54.204.255.242:6814"
-  ],
-  app.use(cors({
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://54.204.255.242:3001",
+  "http://54.204.255.242:5500",
+  "http://54.204.255.242:5501",
+  "http://54.204.255.242:5503",
+  "http://54.204.255.242:8081",
+  "http://54.204.255.242:8089",
+  "http://54.204.255.242:6813",
+  "http://54.204.255.242:6814"
+];
+
+app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like curl or Postman)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -43,6 +41,7 @@ const pool = new Pool({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
